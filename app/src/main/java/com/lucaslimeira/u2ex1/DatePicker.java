@@ -24,7 +24,9 @@ public class DatePicker extends DialogFragment implements DatePickerDialog.OnDat
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        this.calendar = Calendar.getInstance();
+        if(this.calendar == null) {
+            this.calendar = Calendar.getInstance();
+        }
 
         return new DatePickerDialog(getActivity(), this, this.calendar.get(Calendar.YEAR), this.calendar.get(Calendar.MONTH), this.calendar.get(Calendar.DAY_OF_MONTH));
     }
@@ -32,6 +34,10 @@ public class DatePicker extends DialogFragment implements DatePickerDialog.OnDat
     @Override
     public void onDateSet(android.widget.DatePicker view, int year, int month, int dayOfMonth) {
         onDateSetListerner.updateDate(year, month, dayOfMonth);
+    }
+
+    public void setCalendar(Calendar calendar) {
+        this.calendar = calendar;
     }
 
     public interface OnDateSetListerner {

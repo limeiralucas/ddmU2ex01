@@ -28,11 +28,13 @@ public class MainActivity extends AppCompatActivity implements DatePicker.OnDate
 
     public void openDate(View view) {
         datePicker = new DatePicker();
+        datePicker.setCalendar(dateTime);
         datePicker.show(getFragmentManager(), "datePicker");
     }
 
     public void openTime(View view) {
         timePicker = new TimePicker();
+        timePicker.setCalendar(dateTime);
         timePicker.show(getFragmentManager(), "timePicker");
     }
 

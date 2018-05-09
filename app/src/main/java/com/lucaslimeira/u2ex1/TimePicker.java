@@ -24,7 +24,9 @@ public class TimePicker extends DialogFragment implements TimePickerDialog.OnTim
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        this.calendar = Calendar.getInstance();
+        if(this.calendar == null) {
+            this.calendar = Calendar.getInstance();
+        }
 
         return new TimePickerDialog(getActivity(), this, this.calendar.get(Calendar.HOUR_OF_DAY), this.calendar.get(Calendar.MINUTE), true);
     }
@@ -32,6 +34,10 @@ public class TimePicker extends DialogFragment implements TimePickerDialog.OnTim
     @Override
     public void onTimeSet(android.widget.TimePicker view, int hourOfDay, int minute) {
         onTimeSetListener.updateTime(hourOfDay, minute);
+    }
+
+    public void setCalendar(Calendar calendar) {
+        this.calendar = calendar;
     }
 
     public interface OnTimeSetListener {
